@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="11472595-20d6-4ca2-b1f1-2ae6fd29ac13" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="example-sonarqubeFlow" doc:id="5084dab6-ee50-4995-86ba-47da0792b2df" >
+		<http:listener doc:name="Listener" doc:id="cd09b989-b7d5-431a-a336-01f18c8b6480" config-ref="HTTP_Listener_config" path="/sonarqube"/>
+		<set-payload value='#["It works!"]' doc:name="Set Payload" doc:id="53f0b875-7a5c-40bc-97d4-2b3fd78160e8" />
+		<logger level="INFO" doc:name="Logger - PAYLOAD" doc:id="9b8b8e52-a2d9-4d56-ad7e-1b00079b7ff2" message="#[payload]"/>
+	</flow>
+</mule>
